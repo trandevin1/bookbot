@@ -18,14 +18,19 @@ def countLetters(strings):
     return letterCount
 
 
-def sort_on(tup):
-    return tup[1]
+def sort_on(dict):
+    return list(dict.values())[0]
 
 
 def report(letters):
-    listOfLetters = [letter for letter in letters.items()]
-    print(listOfLetters.sort(reverse=True, key=sort_on))
-    print(listOfLetters)
+
+    listOfLetters = [{key: value} for key, value in letters.items() if key.isalpha()]
+    listOfLetters.sort(reverse=True, key=sort_on)
+
+    print(f"--- Begin Report of {sys.argv[1][2:]} ---")
+
+    for char in listOfLetters:
+        print(char)
 
 
 def main():
@@ -34,7 +39,7 @@ def main():
         print("Missing argument please try again!")
         print("Example command: 'python3 main.py <path to book file here>'")
         exit(-1)
-    
+
     print(sys.argv)
 
     path = sys.argv[1]
