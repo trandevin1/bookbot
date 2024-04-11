@@ -27,10 +27,13 @@ def report(letters):
     listOfLetters = [{key: value} for key, value in letters.items() if key.isalpha()]
     listOfLetters.sort(reverse=True, key=sort_on)
 
-    print(f"--- Begin Report of {sys.argv[1][2:]} ---")
+    print(f"--- Begin Report of {sys.argv[1]} ---")
 
     for char in listOfLetters:
-        print(char)
+        key, value = list(char.items())[0]
+        print(f"The '{key}' character was found {value} times")
+
+    print("--- END REPORT ---")
 
 
 def main():
@@ -40,16 +43,12 @@ def main():
         print("Example command: 'python3 main.py <path to book file here>'")
         exit(-1)
 
-    print(sys.argv)
-
     path = sys.argv[1]
 
     with open(path, "r") as file:
         file_contents = file.read()
 
-    print(countWords(file_contents))
     letterDict = countLetters(file_contents.split())
-    # print(letterDict)
     report(letterDict)
 
 
