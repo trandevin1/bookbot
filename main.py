@@ -1,7 +1,9 @@
 import sys
 
+
 def countWords(file):
     return len(file.split())
+
 
 def countLetters(strings):
     letterCount = {}
@@ -9,14 +11,16 @@ def countLetters(strings):
     for string in strings:
         for char in string.lower():
             if char in letterCount:
-               letterCount[char] += 1
+                letterCount[char] += 1
             elif char.isalpha():
-               letterCount[char] = 1
-    
+                letterCount[char] = 1
+
     return letterCount
+
 
 def sort_on(tup):
     return tup[1]
+
 
 def report(letters):
     listOfLetters = [letter for letter in letters.items()]
@@ -26,18 +30,22 @@ def report(letters):
 
 def main():
 
+    if len(sys.argv) < 2:
+        print("Missing argument please try again!")
+        print("Example command: 'python3 main.py <path to book file here>'")
+        exit(-1)
+    
     print(sys.argv)
 
     path = sys.argv[1]
 
-    with open(path, 'r') as file:
+    with open(path, "r") as file:
         file_contents = file.read()
 
     print(countWords(file_contents))
     letterDict = countLetters(file_contents.split())
-    #print(letterDict)
+    # print(letterDict)
     report(letterDict)
-
 
 
 main()
